@@ -2,6 +2,15 @@ import { expect } from "chai";
 import { ethers } from "hardhat";
 
 describe("OptimizedSensorDataStorage", function () {
+  // 1. 部署合约
+  it("Should deploy successfully", async function () {
+    const SensorData = await ethers.getContractFactory("OptimizedSensorDataStorage");
+    const sensorData = await SensorData.deploy();
+    await sensorData.deployed();
+    
+    expect(sensorData.address).to.be.properAddress;
+  });
+  // 2. 测试存储和查询数据
   it("Should store and retrieve data correctly", async function () {
     const SensorData = await ethers.getContractFactory("OptimizedSensorDataStorage");
     const sensorData = await SensorData.deploy();
